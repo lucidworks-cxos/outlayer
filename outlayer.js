@@ -298,7 +298,7 @@ proto.layoutItems = function( items, isInstant ) {
  */
 proto._getItemsForLayout = function( items ) {
   return items.filter( function( item ) {
-    return !item.isIgnored;
+    return item ? !item.isIgnored : false;
   });
 };
 
