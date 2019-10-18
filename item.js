@@ -345,14 +345,17 @@ proto.enableTransition = function(/* style */) {
   // munge number to millisecond, to match stagger
   var duration = this.layout.options.transitionDuration;
   duration = typeof duration == 'number' ? duration + 'ms' : duration;
-  // enable transition styles
-  this.css({
-    transitionProperty: transitionProps,
-    transitionDuration: duration,
-    transitionDelay: this.staggerDelay || 0
-  });
-  // listen for transition end event
-  this.element.addEventListener( transitionEndEvent, this, false );
+  
+  if (!this.element.classList.contains('resizing')) {
+    // enable transition styles
+    this.css({
+      transitionProperty: transitionProps,
+      transitionDuration: duration,
+      transitionDelay: this.staggerDelay || 0
+    });
+    // listen for transition end event
+    this.element.addEventListener( transitionEndEvent, this, false );
+  }
 };
 
 // ----- events ----- //
